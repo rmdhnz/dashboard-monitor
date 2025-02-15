@@ -24,10 +24,10 @@ class User extends Migration
                 'constraint' => 255,
                 'unique'     => true,  // Untuk email yang unik
             ],
-            // 'password'  => [
-            //     'type'       => 'VARCHAR',
-            //     'constraint' => 255,  // Panjang password bisa disesuaikan
-            // ],
+            'password'  => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,  // Panjang password bisa disesuaikan
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
