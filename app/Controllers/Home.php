@@ -8,4 +8,11 @@ class Home extends BaseController
     {
         return view('welcome_message');
     }
+    public function coba(?string $nama = null, $age = '')
+    {
+        if (is_null($nama)) {
+            $nama = "Everyone";
+        }
+        echo "Hello world! : $nama and I am $age years old.";
+    }
 }
