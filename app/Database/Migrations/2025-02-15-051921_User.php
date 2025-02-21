@@ -26,7 +26,15 @@ class User extends Migration
             ],
             'password'  => [
                 'type'       => 'VARCHAR',
-                'constraint' => 255,  // Panjang password bisa disesuaikan
+                'constraint' => 255,
+            ],
+            "role" => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
+            ],
+            "lokasi" => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -38,11 +46,11 @@ class User extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('user_id');
-        $this->forge->createTable('user');
+        $this->forge->createTable('users');
     }
 
     public function down()
     {
-        $this->forge->dropTable('user');
+        $this->forge->dropTable('users');
     }
 }

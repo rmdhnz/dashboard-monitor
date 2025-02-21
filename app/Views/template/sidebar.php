@@ -63,7 +63,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in:</div>
-            (<?= date("H-i-s") ?>)
+            (<?= date("d-m-Y") ?>)
         </div>
     </nav>
 </div>

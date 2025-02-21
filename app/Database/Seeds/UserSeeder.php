@@ -10,15 +10,18 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = \Faker\Factory::create('id_ID');
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $data = [
                 'username' => $faker->userName,
                 'email'    => $faker->email,
                 'password' => password_hash($faker->password, PASSWORD_DEFAULT),
+                // 'role' => $faker->randomElement(['Super User', 'Admin', 'User']),
+                'role' => "user",
+                'lokasi' => $faker->city,
                 'created_at'  => Time::now(),
                 'updated_at' => Time::now(),
             ];
-            $this->db->table('user')->insert($data);
+            $this->db->table('users')->insert($data);
         }
 
         // Simple Queries

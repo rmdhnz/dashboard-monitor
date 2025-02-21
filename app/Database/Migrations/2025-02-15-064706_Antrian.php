@@ -28,9 +28,9 @@ class Antrian extends Migration
                 'type'    => 'DATETIME',
                 'null'    => true,
             ],
-            'sudah_dilayani' => [
-                'type'    => 'BOOLEAN',
-                'default' => false, // Nilai default false
+            "status" => [
+                'type' => 'VARCHAR',
+                'constraint' => 100,
             ],
         ]);
         $this->forge->addPrimaryKey('antrian_id');

@@ -11,6 +11,6 @@ $routes->get('/home/(:any)', 'Home::coba/$1');
 
 $routes->group('antri', function ($routes) {
     $routes->get('/', 'Antrian::index');
-    $routes->get('/teller', 'Antrian::teller');
+    $routes->get('/teller_call', 'Antrian::teller_call');
     $routes->get('/cs', 'Antrian::cs');
 });
