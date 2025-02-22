@@ -8,10 +8,11 @@ use CodeIgniter\I18n\Time;
 
 class Antrian extends BaseController
 {
-    private $antrian_model;
+    private $antrian_model, $faker;
     public function  __construct()
     {
         $this->antrian_model = new \App\Models\AntrianModel();
+        $this->faker = \Faker\Factory::create('id_ID');
     }
     public function index()
     {
@@ -32,7 +33,7 @@ class Antrian extends BaseController
         $tujuan = $this->request->getVar('tujuan');
         $last_antrian = $this->antrian_model->orderBy("antrian_id", 'DESC')->where(["tujuan" => $tujuan]);
         $currentID = $last_antrian ? $last_antrian->countAllResults() + 1 : 1;
-        $nomor_antrian = ($tujuan == "teller" ? "T" : "C") . "_" . $currentID;
+        $nomor_antrian = ($tujuan == "teller" ? "T" : "C") . "-" . sprintf("%03d", $currentID);
         $data = [
             'tujuan' => $tujuan,
             "nomor_antrian" => $nomor_antrian,
@@ -111,5 +112,15 @@ class Antrian extends BaseController
             "dipanggil" => $this->antrian_model->where(["tujuan" => "CS"])->where(["status" => "dipanggil"])->countAllResults(),
         ];
         return view('antrian/cs_call', $data);
+    }
+
+    public function list_antrian()
+    {
+        $data = [
+            "title" => "List Antrian",
+            "dipanggil" => $this->antrian_model->where(["status" => "dipanggil"])->findAll(),
+            "random_number" => $this->faker->randomElement([1, 2, 3]),
+        ];
+        return view('antrian/list_antrian', $data);
     }
 }

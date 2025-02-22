@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <section class="d-flex flex-column justify-content-center align-items-center min-vh-100 bg-light">
+  <section class="d-flex flex-column justify-content-center w-100 align-items-center min-vh-100 bg-light">
     <?= $this->renderSection('content') ?>
   </section>
 </body>
