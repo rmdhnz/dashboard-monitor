@@ -1,6 +1,6 @@
 <?= $this->extend('layout_antrian/template') ?>
 <?= $this->section('content') ?>
-<h1>Teller Service</h1>
+<h1><?= $title ?></h1>
 <h3>Sisa Antrian : <?= $jumlah_antrian ?></h3>
 <div class="container">
   <div class="row mb-3">
@@ -10,7 +10,7 @@
       </div>
     <?php endif; ?>
     <?php if (session()->getFlashdata('error')) :  ?>
-      <div class="alert text-center alert-danger" role="alert">
+      <div class="alert text-center alert-primary" role="alert">
         <?= session()->getFlashdata('error') ?>
       </div>
     <?php endif; ?>
@@ -20,7 +20,7 @@
       <div class="card">
         <img src="/assets/img/bri-logo.png" class="card-img-top" alt="...">
         <div class="card-body">
-          <form action="<?= site_url("/antrian/antrian_call_update") ?>" method="post">
+          <form action="<?= site_url("teller_call_update") ?>" method="post">
             <div class="d-grid gap-2">
               <?= csrf_field(); ?>
               <input type="hidden" name="jenis" value="call">
@@ -34,7 +34,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-md-2 mb-3">
-      <form action="<?= site_url('antrian/antrian_call_update') ?>" method="post">
+      <form action="<?= site_url('teller_call_update') ?>" method="post">
         <div class="d-grid gap-2">
           <?= csrf_field(); ?>
           <input type="hidden" name="jenis" value="dilayani">
@@ -44,7 +44,7 @@
       </form>
     </div>
     <div class="col-md-2 mb-3">
-      <form action="<?= site_url('antrian/antrian_call_update') ?>" method="post">
+      <form action="<?= site_url('teller_call_update') ?>" method="post">
         <div class="d-grid gap-2">
           <?= csrf_field(); ?>
           <input type="hidden" name="jenis" value="dilewati">

@@ -123,4 +123,86 @@ class Antrian extends BaseController
         ];
         return view('antrian/list_antrian', $data);
     }
+
+
+    public function cs_call_update()
+    {
+        $jenis = $this->request->getVar('jenis');
+        $tujuan = $this->request->getVar('tujuan_call');
+        if ($jenis == 'call') {
+            $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "menunggu"])->first();
+            if ($this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->countAllResults() > 0) {
+                $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->first();
+            }
+            $this->antrian_model->save([
+                "antrian_id" => $current_antrian["antrian_id"],
+                "nomor_antrian" => $current_antrian["nomor_antrian"],
+                "tujuan" => $current_antrian["tujuan"],
+                "timestamp" => $current_antrian["timestamp"],
+                "status" => "dipanggil",
+            ]);
+            session()->setFlashdata('attention', 'Nomor antrian ' . $current_antrian["nomor_antrian"] .  " dipanggil");
+        } else if ($jenis == "dilayani") {
+            $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->first();
+            $this->antrian_model->save([
+                "antrian_id" => $current_antrian["antrian_id"],
+                "nomor_antrian" => $current_antrian["nomor_antrian"],
+                "tujuan" => $current_antrian["tujuan"],
+                "timestamp" => $current_antrian["timestamp"],
+                "status" => "dilayani",
+            ]);
+            session()->setFlashdata('attention', 'Nomor antrian ' . $current_antrian["nomor_antrian"] .  " dilayani");
+        } else {
+            $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->first();
+            $this->antrian_model->save([
+                "antrian_id" => $current_antrian["antrian_id"],
+                "nomor_antrian" => $current_antrian["nomor_antrian"],
+                "tujuan" => $current_antrian["tujuan"],
+                "timestamp" => $current_antrian["timestamp"],
+                "status" => "dilewati",
+            ]);
+            session()->setFlashdata('attention', 'Nomor antrian ' . $current_antrian["nomor_antrian"] .  " dilewati");
+        }
+        return redirect()->back();
+    }
+    public function teller_call_update()
+    {
+        $jenis = $this->request->getVar('jenis');
+        $tujuan = $this->request->getVar('tujuan_call');
+        if ($jenis == 'call') {
+            $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "menunggu"])->first();
+            if ($this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->countAllResults() > 0) {
+                $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->first();
+            }
+            $this->antrian_model->save([
+                "antrian_id" => $current_antrian["antrian_id"],
+                "nomor_antrian" => $current_antrian["nomor_antrian"],
+                "tujuan" => $current_antrian["tujuan"],
+                "timestamp" => $current_antrian["timestamp"],
+                "status" => "dipanggil",
+            ]);
+            session()->setFlashdata('attention', 'Nomor antrian ' . $current_antrian["nomor_antrian"] .  " dipanggil");
+        } else if ($jenis == "dilayani") {
+            $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->first();
+            $this->antrian_model->save([
+                "antrian_id" => $current_antrian["antrian_id"],
+                "nomor_antrian" => $current_antrian["nomor_antrian"],
+                "tujuan" => $current_antrian["tujuan"],
+                "timestamp" => $current_antrian["timestamp"],
+                "status" => "dilayani",
+            ]);
+            session()->setFlashdata('attention', 'Nomor antrian ' . $current_antrian["nomor_antrian"] .  " dilayani");
+        } else {
+            $current_antrian = $this->antrian_model->where(["tujuan" => $tujuan])->where(["status" => "dipanggil"])->first();
+            $this->antrian_model->save([
+                "antrian_id" => $current_antrian["antrian_id"],
+                "nomor_antrian" => $current_antrian["nomor_antrian"],
+                "tujuan" => $current_antrian["tujuan"],
+                "timestamp" => $current_antrian["timestamp"],
+                "status" => "dilewati",
+            ]);
+            session()->setFlashdata('attention', 'Nomor antrian ' . $current_antrian["nomor_antrian"] .  " dilewati");
+        }
+        return redirect()->back();
+    }
 }

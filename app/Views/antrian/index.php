@@ -19,7 +19,7 @@
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">Teller</h5>
-              <form action="<?= site_url('/antrian/antrian_save') ?>" method="post">
+              <form action="<?= site_url('/antrian_save') ?>" method="post">
                 <?= csrf_field(); ?>
                 <input type="hidden" class="form-control" name="tujuan" value="teller">
                 <div class="d-grid gap-2">
@@ -40,7 +40,7 @@
           <div class="col-md-8 d-block h-100">
             <div class="card-body d-flex justify-content-beetween flex-column">
               <h5 class="card-title">Customer Service</h5>
-              <form action="<?= site_url('/antrian/antrian_save') ?>" method="post">
+              <form action="<?= site_url('/antrian_save') ?>" method="post">
                 <div class="d-grid gap-2">
                   <?= csrf_field(); ?>
                   <input type="hidden" class="form-control" name="tujuan" value="CS">

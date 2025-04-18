@@ -11,14 +11,19 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="<?= base_url() ?>/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?= base_url() ?>/css/custom.css" />
 </head>
 
 <body class="sb-nav-fixed">
     <?= $this->include("template/navbar") ?>
-    <div id="layoutSidenav">
+    <div id="layoutSidenav" class="bg-custom">
         <?= $this->include("template/sidebar") ?>
         <div id="layoutSidenav_content">
-            <?= $this->renderSection('content') ?>
+            <main>
+                <div class="container-fluid px-4">
+                    <?= $this->renderSection('content') ?>
+                </div>
+            </main>
             <?= $this->include("template/footer") ?>
         </div>
     </div>
@@ -29,6 +34,7 @@
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
     <script src="/js/datatables-simple-demo.js"></script>
+    <script src="/js/custom.js"></script>
 </body>
 
 </html>
